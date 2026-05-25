@@ -34,7 +34,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await q.message.reply_text("Already chatting")
             return
 
-        if waiting:
+        if waiting and waiting[0] != uid:
             p = waiting.pop(0)
             chats[uid] = p
             chats[p] = uid
