@@ -8,17 +8,26 @@ chats = {}
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = [
-        [InlineKeyboardButton("🔥 Start Chat", callback_data="find")],
-        [InlineKeyboardButton("⚡ Next", callback_data="next")],
-        [InlineKeyboardButton("❌ Leave", callback_data="leave")],
-        [InlineKeyboardButton("👑 VIP", callback_data="vip")]
+        [InlineKeyboardButton("🔥 Start Chat | شروع چت", callback_data="find")],
+        [InlineKeyboardButton("⚡ Next | چت بعدی", callback_data="next")],
+        [InlineKeyboardButton("❌ Leave | خروج", callback_data="leave")],
+        [InlineKeyboardButton("👤 Profile | پروفایل", callback_data="profile")],
+        [InlineKeyboardButton("👑 VIP Lounge", callback_data="vip")]
     ]
 
-    await update.message.reply_text(
-        "🖤 BLACKTALK VIP 🖤\nLuxury Anonymous Chat",
-        reply_markup=InlineKeyboardMarkup(kb)
+    text = (
+        "🖤✨ BLACKTALK VIP ✨🖤\n\n"
+        "🎭 Luxury Anonymous Chat\n"
+        "چت ناشناس خاص و متفاوت\n\n"
+        "🔥 Meet strangers\n"
+        "⚡ Safe & Fast\n"
+        "👑 VIP Experience"
     )
 
+    await update.message.reply_text(
+        text,
+        reply_markup=InlineKeyboardMarkup(kb)
+    )
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
     try:
@@ -70,7 +79,10 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await q.message.reply_text("You left chat")
         else:
             await q.message.reply_text("No active chat")
-
+elif data == "profile":
+    await q.message.reply_text(
+        f"👤 Profile\n🆔 ID: {uid}\n👑 Rank: Member"
+    
     elif data == "vip":
         await q.message.reply_text("👑 VIP Coming Soon")
 
