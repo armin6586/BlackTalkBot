@@ -1,3 +1,4 @@
+from database import db, cursor
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ContextTypes, filters
 
@@ -14,7 +15,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("👤 Profile | پروفایل", callback_data="profile")],
         [InlineKeyboardButton("👑 VIP Lounge", callback_data="vip")]
     ]
-
+cursor.execute(
+    "INSERT OR IGNORE INTO users(user_id) VALUES(?)",
+    (update.effective_user.id,)
+)
+db.commit()
     text = (
         "🖤✨ BLACKTALK VIP ✨🖤\n\n"
         "🎭 Luxury Anonymous Chat\n"
