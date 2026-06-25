@@ -85,8 +85,25 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             await q.message.reply_text("No active chat")
 elif data == "profile":
+
+    cursor.execute(
+        "SELECT country, vip, reports FROM users WHERE user_id=?",
+        (uid,)
+    )
+
+    user = cursor.fetchone()
+
+    country = user[0] if user else "Not Set"
+    vip = "👑 VIP" if user and user[1] else "Member"
+    reports = user[2] if user else 0
+
     await q.message.reply_text(
-        f"👤 Profile\n🆔 ID: {uid}\n👑 Rank: Member"
+        f"👤 BLACKTALK PROFILE\n\n"
+        f"🆔 ID: {uid}\n"
+        f"🌍 Country: {country}\n"
+        f"👑 Status: {vip}\n"
+        f"🚨 Reports: {reports}"
+    )
     
     elif data == "vip":
         await q.message.reply_text("👑 VIP Coming Soon")
