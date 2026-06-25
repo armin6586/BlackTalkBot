@@ -2,7 +2,7 @@ from database import db, cursor
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ContextTypes, filters
 
-TOKEN = "8652798240:AAGCxVDwuUKGxNKgT98zQgILdAFI6KZ6IUc"
+TOKEN = "8652798240:AAExlMDk9Ybxy5VLH1v1sgtlVxO7id3KhPY"
 
 waiting = []
 chats = {}
